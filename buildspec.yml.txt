@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "[Install] No dependencies needed for static build"
+      - chmod +x tests/test.sh
+
+  pre_build:
+    commands:
+      - echo "[Pre-Build] Validating file structure"
+      - ls -al
+
+  build:
+    commands:
+      - echo "[Build] Running test script"
+      - ./tests/test.sh
+
+      - echo "[Build] Preparing output directory"
+      - mkdir -p output/scripts
+      - cp index.html style.css script.js appspec.yml output/
+      - cp scripts/*.sh output/scripts/
+
+  post_build:
+    commands:
+      - echo "[Post-Build] Build complete"
+      - ls -al output/
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: output
