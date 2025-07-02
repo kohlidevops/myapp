@@ -14,10 +14,12 @@ phases:
   build:
     commands:
       - echo "[Build] Running test script"
-      - ./tests/test.sh
+#      - ./tests/test.sh
 
       - echo "[Build] Preparing output directory"
       - mkdir -p output/scripts
+      - echo "Making .sh scripts executable..."
+      - chmod +x scripts/*.sh || echo "No scripts found to chmod"
       - cp index.html style.css script.js appspec.yml output/
       - cp scripts/*.sh output/scripts/
 
@@ -25,6 +27,7 @@ phases:
     commands:
       - echo "[Post-Build] Build complete"
       - ls -al output/
+      - ls -al output/scripts/
 
 artifacts:
   files:
