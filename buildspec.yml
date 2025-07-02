@@ -14,7 +14,7 @@ phases:
   build:
     commands:
       - echo "[Build] Running test script"
-#      - ./tests/test.sh
+      - ./tests/test.sh
 
       - echo "[Build] Preparing output directory"
       - mkdir -p output/scripts
